@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>FakeSnakeHead</title>
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #ff0000;
+        }
+        .countdown {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<script defer>
+    // 设置目标日期和时间
+    var countDownDate = new Date();
+    countDownDate.setDate(countDownDate.getDate() + 5); // 五天后
+    countDownDate.setHours(18, 0, 0); // 设定为下午六点
+
+    // 更新倒计时每一秒
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var fakeNow = new Date();
+        fakeNow.setFullYear(2010, 9, 21);
+
+        // 计算天数，小时数，分钟数和秒数
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // 显示结果在id="timer"的元素中
+        document.getElementById("timer").innerHTML = days + " Days " + hours + " Hours "
+            + minutes + " Minutes " + seconds + " Seconds ";
+
+        var customFormattedDate = fakeNow.getFullYear() + '-' + (fakeNow.getMonth() + 1) + '-' + fakeNow.getDate();
+        var customFormattedTime = fakeNow.getHours() + ':' + fakeNow.getMinutes() + ':' + fakeNow.getSeconds();
+        console.log(customFormattedDate + ' ' + customFormattedTime); // 'YYYY-MM-DD HH:MM:SS'
+
+        document.getElementById("nowtime").innerHTML = "Today is " + customFormattedDate + ' ' + customFormattedTime +"";
+        document.getElementById("church").innerHTML = "THE PASSOVER ANGLE CHURCH JOHN.BELFORT";
+        document.getElementById("deadline").innerHTML = "To DoomsDay 2010-10-26-18:00:00 Remains：";
+        // 如果倒计时结束，写一些文本
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "Doom！";
+        }
+    }, 1000);
+</script>
+<div class="countdown">
+    <h1 id="The Fake SnakeHead">The Fake SnakeHead</h1>
+
+    <h2 id="nowtime"></h2>
+    <h2 id="deadline"></h2>
+    <h1 id="timer"></h1>
+    <h3 id="church"></h3>
+</div>
+
+</body>
+</html>
